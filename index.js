@@ -1,6 +1,7 @@
 const { readInputFile } = require('./parser');
 const { hentOrgInfo } = require('./api');
 const { writeOutputFile } = require('./writer');
+const { statistikk } = require('./statistikk');
 
 const CSV_INPUT = './ressurs/firmaer.csv';
 const CSV_OUTPUT = './ressurs/firmaer_output.csv';
@@ -17,6 +18,11 @@ async function main() {
     //skriv til output CSV
   await writeOutputFile(CSV_OUTPUT, beriket);
   console.log('Data skrevet til', CSV_OUTPUT);
+
+  //Kjør statistikk
+  const stats = statistikk(CSV_OUTPUT);
+
+
 }
 
 main();
