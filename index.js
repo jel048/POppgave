@@ -20,7 +20,7 @@ async function main() {
   console.log('Data skrevet til', CSV_OUTPUT);
 
   //Kjør statistikk
-  const stats = statistikk(CSV_OUTPUT);
+  const stats = await statistikk(CSV_OUTPUT);
 
 
 }

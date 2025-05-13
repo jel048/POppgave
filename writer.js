@@ -11,7 +11,8 @@ function writeOutputFile(filePath, data) {
       { id: 'organisasjonsformkode', title: 'OrganisasjonsformKode' },
       { id: 'naeringskode', title: 'Naeringskode' },
       
-    ]
+    ],
+    fieldDelimiter: ';'
   });
 
   return csvWriter.writeRecords(data);

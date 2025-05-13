@@ -1,11 +1,16 @@
 const { readInputFile } = require('./parser');
 
 
-function statistikk(filePath) {
+async function statistikk(filePath) {
 
     //Les data fra CSV
-    const data = readInputFile(filePath);
-    const stats = {}
+    const promise = readInputFile(filePath);
+    const csvData = await Promise.all([promise]);
+    const data = csvData[0];
+
+
+
+    let stats = {}
     const statusCount = {}
     const orgFormCount = {}
     const ansatteKategorier = {
@@ -17,7 +22,7 @@ function statistikk(filePath) {
 
       let totalOrgForms = 0
 
-      data.forEach(row => {
+      for (const row of data) {
         const status = row.Status?.trim()
         const form = row.OrganisasjonsformKode?.trim()
         const ansatte = parseInt(row.AntallAnsatte)
@@ -40,7 +45,7 @@ function statistikk(filePath) {
           else if (ansatte <= 49) ansatteKategorier['10-49']++
           else ansatteKategorier['50+']++
         }
-      })
+      }
 
       // Konverter antall til prosent
       const orgFormPercent = {}
