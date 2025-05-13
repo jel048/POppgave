@@ -47,7 +47,7 @@ async function statistikk(filePath) {
         }
       }
 
-      // Konverter antall til prosent
+      //konverter antall til prosent
       const orgFormPercent = {}
       for (const form in orgFormCount) {
         orgFormPercent[form] = (orgFormCount[form] / totalOrgForms) * 100
